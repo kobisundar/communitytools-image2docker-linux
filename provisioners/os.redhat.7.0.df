@@ -1,0 +1,8 @@
+FROM alpine
+LABEL com.docker.v2c.component=provisioner \
+      com.docker.v2c.component.category=os \
+      com.docker.v2c.component.description=Provisions\ redhat7.0\ images
+COPY ./os.redhat.7.0/Dockerfile /Dockerfile
+RUN tar cf payload.tar Dockerfile
+ENTRYPOINT ["/bin/sh"]
+CMD ["-c", "cat /payload.tar"]
