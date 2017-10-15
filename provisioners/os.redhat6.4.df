@@ -1,7 +1,7 @@
 FROM alpine
 LABEL com.docker.v2c.component=provisioner \
       com.docker.v2c.component.category=os \
-      com.docker.v2c.component.description=Provisions\ redhat7.0\ images
+      com.docker.v2c.component.description=Provisions\ redhat6.4\ images
 COPY ./os.redhat6.4/Dockerfile /Dockerfile
 RUN tar cf payload.tar Dockerfile
 ENTRYPOINT ["/bin/sh"]
