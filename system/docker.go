@@ -237,6 +237,7 @@ func LaunchDetective(ctx context.Context, c chan *bytes.Buffer, d api.Detective,
 
 	// Copy the buffer
 	stdout := new(bytes.Buffer)
+	fmt.Printf("my changes in stdout: %v\n", stdout)
 	for {
 		if _, err = attachment.Reader.Discard(4); err != nil {
 			break
