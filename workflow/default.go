@@ -55,6 +55,7 @@ func BuildLocal(ctx context.Context, abs string) (string, error) {
 
 	// Collect Detective responses
 	detected := []detectiveResponse{}
+	fmt.Printf("Responses from detectives:", detected)
 	collectDetectiveResponses(ctx, len(components.Detectives), dr, &detected)
 
 	pCount := len(detected)
