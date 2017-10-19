@@ -1,4 +1,4 @@
-FROM djui/guestfs
+FROM curator/guestfish
 LABEL com.docker.v2c.component=packager \
       com.docker.v2c.component.category=export \
       com.docker.v2c.component.builtin=1 \
