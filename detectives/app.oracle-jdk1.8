@@ -1,0 +1,6 @@
+FROM alpine:3.4
+LABEL com.docker.v2c.component=detective \
+      com.docker.v2c.component.category=application \
+      com.docker.v2c.component.builtin=1 \
+      com.docker.v2c.component.rel=v2c/oraclejdk-provisioner:v1.8
+CMD find /v2c/disk/ -name java | grep '/jdk1.8.*/bin/java'
