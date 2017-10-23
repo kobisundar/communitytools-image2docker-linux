@@ -1,0 +1,8 @@
+FROM alpine
+LABEL com.docker.v2c.component=provisioner \
+      com.docker.v2c.component.category=application \
+      com.docker.v2c.component.description=Provisions\ oracle-java-1.8
+COPY ./app.oracle-jdk1.8/Dockerfile /Dockerfile
+RUN tar cf payload.tar Dockerfile
+ENTRYPOINT ["/bin/bash"]
+CMD ["-c", "cat /payload.tar"]
