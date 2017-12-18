@@ -1,4 +1,0 @@
-#!/bin/sh
-ENVS
-exec setuidgid tomcat STARTUP
-

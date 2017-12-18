@@ -55,13 +55,13 @@ func BuildLocal(ctx context.Context, abs string) (string, error) {
 
 	// Collect Detective responses
 	detected := []detectiveResponse{}
-	
+
 	collectDetectiveResponses(ctx, len(components.Detectives), dr, &detected)
 
 	pCount := len(detected)
 	if pCount > 0 {
 		//fmt.Printf("Responses from detectives:\n", detected)
-		fmt.Printf("Result found for kobi:\n")
+		fmt.Printf("Result found for following detectives:\n")
 	}
 	for _, dr := range detected {
 		fmt.Printf("\t%v\n", dr.Detective)
@@ -173,9 +173,10 @@ func Build(ctx context.Context, target string, noclean bool) (string, error) {
 	// Collect Detective responses
 	detected := []detectiveResponse{}
 	collectDetectiveResponses(ctx, len(components.Detectives), dr, &detected)
-	fmt.Printf("Responses from detectives:\n", detected)
+	//fmt.Printf("Responses from detectives:\n", detected)
 	pCount := len(detected)
 	if pCount > 0 {
+
 		fmt.Printf("Result found for kobi:\n")
 	}
 	for _, dr := range detected {

@@ -108,7 +108,6 @@ func verifyContributedInstructionsForCategory(c string, root *parser.Node) strin
 		case `application`:
 			// allow anything but these
 			if child.Value == `from` ||
-				child.Value == `add` ||
 				child.Value == `copy` ||
 				child.Value == `shell` ||
 				child.Value == `entrypoint` ||

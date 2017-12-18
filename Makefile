@@ -72,7 +72,7 @@ release: build
 democlean:
 	@docker rmi $(shell docker images --filter label=com.docker.v2c.component.demo -aq) &>/dev/null || true
 
-demoprep:
+#demoprep:
 	@docker build -t v2c/packager-demo:1 -f ./packager/demo/Packager.df ./packager/demo/
 	@docker build -t v2c/app.random-detective:1 -f ./detectives/app.random1.df ./detectives/
 	@docker build -t v2c/app.random-detective:2 -f ./detectives/app.random2.df ./detectives/
@@ -81,9 +81,9 @@ demoprep:
 	@docker build -t v2c/app.random.provisioner:2 -f ./provisioners/app.random2.df ./provisioners/
 	@docker build -t v2c/app.random.provisioner:3 -f ./provisioners/app.random3.df ./provisioners/
 
-demo-darwin:
+#demo-darwin:
 	@bin/v2c-darwin64 build demo.vmdk
-demo-linux:
+#demo-linux:
 	@bin/v2c-linux64 build demo.vmdk
 
 builtin-clean:
@@ -92,62 +92,68 @@ builtin-clean:
 builtin-prep:
 	@docker build -t v2c/guestfish-export:1 -f ./packager/guestfish-export.df ./packager/
 
-	@docker build -t v2c/centos-detective:v6.8   -f ./detectives/os.centos6.8.df ./detectives/
-	@docker build -t v2c/centos-provisioner:v6.8 -f ./provisioners/os.centos6.8.df ./provisioners/
+#	@docker build -t v2c/centos-detective:v6.8   -f ./detectives/os.centos6.8.df ./detectives/
+#	@docker build -t v2c/centos-provisioner:v6.8 -f ./provisioners/os.centos6.8.df ./provisioners/
 	
 	@docker build -t v2c/redhat-detective:v6.4   -f ./detectives/os.redhat6.4.df ./detectives/
 	@docker build -t v2c/redhat-provisioner:v6.4 -f ./provisioners/os.redhat6.4.df ./provisioners/
 
-	@docker build -t v2c/ubuntu-detective:v16.04   -f ./detectives/os.ubuntu16.04.df ./detectives/
-	@docker build -t v2c/ubuntu-provisioner:v16.04 -f ./provisioners/os.ubuntu16.04.df ./provisioners/
+	@docker build -t v2c/oracle-jdk-detective:v1.8  -f ./detectives/app.oracle-jdk1.8.df ./detectives/        
+	@docker build -t v2c/oracle-jdk-provisioner:v1.8 -f ./provisioners/app.oracle-jdk1.8.df ./provisioners/
 
-	@docker build -t v2c/ubuntu-detective:v16.04.1   -f ./detectives/os.ubuntu16.04.1.df ./detectives/
-	@docker build -t v2c/ubuntu-provisioner:v16.04.1 -f ./provisioners/os.ubuntu16.04.1.df ./provisioners/
+	@docker build -t v2c/app.tomcat8-detective:v8  -f ./detectives/app.tomcat8.df ./detectives/
+	@docker build -t v2c/app.tomcat8-provisioner:v8 -f ./provisioners/app.tomcat8.df ./provisioners/	
+#	@docker build -t v2c/ubuntu-detective:v16.04   -f ./detectives/os.ubuntu16.04.df ./detectives/
+#	@docker build -t v2c/ubuntu-provisioner:v16.04 -f ./provisioners/os.ubuntu16.04.df ./provisioners/
 
-	@docker build -t v2c/ubuntu-detective:v16.10   -f ./detectives/os.ubuntu16.10.df ./detectives/
-	@docker build -t v2c/ubuntu-provisioner:v16.10 -f ./provisioners/os.ubuntu16.10.df ./provisioners/
+#	@docker build -t v2c/ubuntu-detective:v16.04.1   -f ./detectives/os.ubuntu16.04.1.df ./detectives/
+#	@docker build -t v2c/ubuntu-provisioner:v16.04.1 -f ./provisioners/os.ubuntu16.04.1.df ./provisioners/
 
-	@docker build -t v2c/ubuntu-detective:v14.04.5   -f ./detectives/os.ubuntu14.04.5.df ./detectives/
-	@docker build -t v2c/ubuntu-provisioner:v14.04.5 -f ./provisioners/os.ubuntu14.04.5.df ./provisioners/
+#	@docker build -t v2c/ubuntu-detective:v16.10   -f ./detectives/os.ubuntu16.10.df ./detectives/
+#	@docker build -t v2c/ubuntu-provisioner:v16.10 -f ./provisioners/os.ubuntu16.10.df ./provisioners/
 
-	@docker build -t v2c/app.apt-repl.detective:1   -f ./detectives/app.apt-repl-nover.df ./detectives/
-	@docker build -t v2c/app.apt-repl.provisioner:1 -f ./provisioners/app.apt-repl.df ./provisioners/
+#	@docker build -t v2c/ubuntu-detective:v14.04.5   -f ./detectives/os.ubuntu14.04.5.df ./detectives/
+#	@docker build -t v2c/ubuntu-provisioner:v14.04.5 -f ./provisioners/os.ubuntu14.04.5.df ./provisioners/
 
-	@docker build -t v2c/conf.apache2-var-www.detective:1   -f ./detectives/conf.apache2-var-www.df ./detectives/
-	@docker build -t v2c/conf.apache2-var-www.provisioner:1 -f ./provisioners/conf.apache2-var-www.df ./provisioners/
+#	@docker build -t v2c/app.apt-repl.detective:1   -f ./detectives/app.apt-repl-nover.df ./detectives/
+#	@docker build -t v2c/app.apt-repl.provisioner:1 -f ./provisioners/app.apt-repl.df ./provisioners/
 
-	@docker build -t v2c/conf.apache2-etc.detective:1   -f ./detectives/conf.apache2-etc.df   ./detectives/
-	@docker build -t v2c/conf.apache2-etc.provisioner:1 -f ./provisioners/conf.apache2-etc.df ./provisioners/
+#	@docker build -t v2c/conf.apache2-var-www.detective:1   -f ./detectives/conf.apache2-var-www.df ./detectives/
+#	@docker build -t v2c/conf.apache2-var-www.provisioner:1 -f ./provisioners/conf.apache2-var-www.df ./provisioners/
 
-	@docker build -t v2c/conf.mysql5-data.detective:1   -f ./detectives/conf.mysql5-data.df ./detectives/
-	@docker build -t v2c/conf.mysql5-data.provisioner:1 -f ./provisioners/conf.mysql5-data.df ./provisioners/
+#	@docker build -t v2c/conf.apache2-etc.detective:1   -f ./detectives/conf.apache2-etc.df   ./detectives/
+#	@docker build -t v2c/conf.apache2-etc.provisioner:1 -f ./provisioners/conf.apache2-etc.df ./provisioners/
 
-	@docker build -t v2c/runit-detective:ubuntu-v14.04.5    -f ./detectives/init.ubuntu14.04.5.df ./detectives/
-	@docker build -t v2c/runit-provisioner:ubuntu-v14.04.5  -f ./provisioners/init.ubuntu14.04.5.df ./provisioners/
+#	@docker build -t v2c/conf.mysql5-data.detective:1   -f ./detectives/conf.mysql5-data.df ./detectives/
+#	@docker build -t v2c/conf.mysql5-data.provisioner:1 -f ./provisioners/conf.mysql5-data.df ./provisioners/
+
+#	@docker build -t v2c/runit-detective:ubuntu-v14.04.5    -f ./detectives/init.ubuntu14.04.5.df ./detectives/
+#	@docker build -t v2c/runit-provisioner:ubuntu-v14.04.5  -f ./provisioners/init.ubuntu14.04.5.df ./provisioners/
 	
-	@docker build -t v2c/runit-detective:ubuntu-v14.04.5    -f ./detectives/init.ubuntu14.04.5.df ./detectives/
-	@docker build -t v2c/runit-provisioner:ubuntu-v14.04.5  -f ./provisioners/init.ubuntu14.04.5.df ./provisioners/
+#	@docker build -t v2c/runit-detective:ubuntu-v14.04.5    -f ./detectives/init.ubuntu14.04.5.df ./detectives/
+#	@docker build -t v2c/runit-provisioner:ubuntu-v14.04.5  -f ./provisioners/init.ubuntu14.04.5.df ./provisioners/
 
 
-	@docker build -t v2c/runit-detective:ubuntu-v16.04    -f ./detectives/init.ubuntu16.04.df   ./detectives/
-	@docker build -t v2c/runit-provisioner:ubuntu-v16.04  -f ./provisioners/init.ubuntu16.04.df ./provisioners/
+#	@docker build -t v2c/runit-detective:ubuntu-v16.04    -f ./detectives/init.ubuntu16.04.df   ./detectives/
+#	@docker build -t v2c/runit-provisioner:ubuntu-v16.04  -f ./provisioners/init.ubuntu16.04.df ./provisioners/
 
-	@docker build -t v2c/runit-detective:ubuntu-v16.04.1    -f ./detectives/init.ubuntu16.04.1.df   ./detectives/
-	@docker build -t v2c/runit-provisioner:ubuntu-v16.04.1  -f ./provisioners/init.ubuntu16.04.1.df ./provisioners/
+#	@docker build -t v2c/runit-detective:ubuntu-v16.04.1    -f ./detectives/init.ubuntu16.04.1.df   ./detectives/
+#	@docker build -t v2c/runit-provisioner:ubuntu-v16.04.1  -f ./provisioners/init.ubuntu16.04.1.df ./provisioners/
 
-	@docker build -t v2c/runit-detective:ubuntu-v16.10    -f ./detectives/init.ubuntu16.10.df   ./detectives/
-	@docker build -t v2c/runit-provisioner:ubuntu-v16.10  -f ./provisioners/init.ubuntu16.10.df ./provisioners/
+#	@docker build -t v2c/runit-detective:ubuntu-v16.10    -f ./detectives/init.ubuntu16.10.df   ./detectives/
+#	@docker build -t v2c/runit-provisioner:ubuntu-v16.10  -f ./provisioners/init.ubuntu16.10.df ./provisioners/
 
-	@docker build -t v2c/init.apache2-sysv.detective:2 -f ./detectives/init.apache2-sysv.df ./detectives/
-	@docker build -t v2c/init.apache2-provisioner:2    -f ./provisioners/init.apache2.df    ./provisioners/
+#	@docker build -t v2c/init.apache2-sysv.detective:2 -f ./detectives/init.apache2-sysv.df ./detectives/
+#	@docker build -t v2c/init.apache2-provisioner:2    -f ./provisioners/init.apache2.df    ./provisioners/
 
-	@docker build -t v2c/app.tomcat8.5.5-detective:1   -f ./detectives/app.tomcat8.5.5.df   ./detectives/
-	@docker build -t v2c/app.tomcat8.5.5-provisioner:1 -f ./provisioners/app.tomcat8.5.5.df ./provisioners/
-	@docker build -t v2c/init.tomcat-detective:1   -f ./detectives/init.tomcat-systemd.df   ./detectives/
-	@docker build -t v2c/init.tomcat-provisioner:1 -f ./provisioners/init.tomcat-systemd.df ./provisioners/
+#	@docker build -t v2c/app.tomcat8.5.5-detective:1   -f ./detectives/app.tomcat8.5.5.df   ./detectives/
+#	@docker build -t v2c/app.tomcat8.5.5-provisioner:1 -f ./provisioners/app.tomcat8.5.5.df ./provisioners/
+#	@docker build -t v2c/init.tomcat-detective:1   -f ./detectives/init.tomcat-systemd.df   ./detectives/
+#	@docker build -t v2c/init.tomcat-provisioner:1 -f ./provisioners/init.tomcat-systemd.df ./provisioners/
 
-	@docker build -t vc2/app.glassfish4-detective:1 -f ./detectives/app.glassfish4.df ./detectives/
-	@docker build -t v2c/app.glassfish4-provisioner:1 -f ./provisioners/app.glassfish4.df ./provisioners/
+#	@docker build -t vc2/app.glassfish4-detective:1 -f ./detectives/app.glassfish4.df ./detectives/
+#	@docker build -t v2c/app.glassfish4-provisioner:1 -f ./provisioners/app.glassfish4.df ./provisioners/
 
-	@docker build -t vc2/app.glassfish3-detective:1 -f ./detectives/app.glassfish3.df ./detectives/
-	@docker build -t v2c/app.glassfish3-provisioner:1 -f ./provisioners/app.glassfish3.df ./provisioners/
+#	@docker build -t vc2/app.glassfish3-detective:1 -f ./detectives/app.glassfish3.df ./detectives/
+#	@docker build -t v2c/app.glassfish3-provisioner:1 -f ./provisioners/app.glassfish3.df ./provisioners/
+ 
